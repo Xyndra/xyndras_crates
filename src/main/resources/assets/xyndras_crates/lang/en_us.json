@@ -1,0 +1,13 @@
+{
+  "itemGroup.xyndras_crates": "Example Mod Tab",
+  "block.xyndras_crates.example_block": "Example Block",
+  "item.xyndras_crates.example_item": "Example Item",
+
+  "xyndras_crates.configuration.title": "Xyndra's Crates Configs",
+  "xyndras_crates.configuration.section.xyndras_crates.common.toml": "Xyndra's Crates Configs",
+  "xyndras_crates.configuration.section.xyndras_crates.common.toml.title": "Xyndra's Crates Configs",
+  "xyndras_crates.configuration.items": "Item List",
+  "xyndras_crates.configuration.logDirtBlock": "Log Dirt Block",
+  "xyndras_crates.configuration.magicNumberIntroduction": "Magic Number Text",
+  "xyndras_crates.configuration.magicNumber": "Magic Number"
+}
