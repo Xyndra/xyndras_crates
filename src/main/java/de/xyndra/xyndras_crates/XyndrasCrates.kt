@@ -127,7 +127,8 @@ class XyndrasCrates(modEventBus: IEventBus, modContainer: ModContainer) {
                             player.displayClientMessage(
                                 Component.literal("Someone is already using this crate!").withStyle(ChatFormatting.RED), false
                             )
-                            event.cancellationResult = InteractionResult.SUCCESS
+                            event.cancellationResult = InteractionResult.PASS
+                            event.isCanceled = true
                             return
                         }
 
@@ -148,7 +149,7 @@ class XyndrasCrates(modEventBus: IEventBus, modContainer: ModContainer) {
                             crateEventHandler.updatePlayerCooldown()
                         }
 
-
+                        event.isCanceled = true
                         // Floating item will be spawned in the CrateEventHandler's init block
                     } else {
                         // Open crate preview GUI
@@ -157,6 +158,7 @@ class XyndrasCrates(modEventBus: IEventBus, modContainer: ModContainer) {
                                 ParseableName(crateName).returnMessageAsStyledComponent(), crateConfig
                             )
                         )
+                        event.isCanceled = true
                     }
                     event.cancellationResult = InteractionResult.SUCCESS
                     return
