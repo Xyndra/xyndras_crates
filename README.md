@@ -1,25 +1,78 @@
+# Xyndra's Crates
 
-Installation information
-=======
+This is a MC mod based on [Pebble's Lootcrate](https://github.com/navneetset/pebbles-crate).
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+Note that it requires Kotlin for Forge to run.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+## Permissions
+For all admin commands, if you have LuckPerm installed, the following is required:<br>
+`xyndra.admin.crate`
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## Available Commands
+`/crate_admin crate` Displays all available crate in the config and lets you grab a crate transformer/crate key <br>
+`/crate_admin getcrate <name>` Get a crate transformer <br>
+`/crate_admin givekey <player> <amount> <cratename>` Gives cratekey to a specific player <br>
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+## How to use?
+After installing the mod, you may navigate to your `/config/xyndras-crate/crates`then create a file, for example `example.json`
+<br>
+You may use the follow example as reference for the structure: <br>
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+```
+{
+  "crateName": "Vanilla Items Crate",
+  "crateKey": {
+    "material": "minecraft:tripwire_hook",
+    "name": "&#FFBF00Vanilla Key",
+    "lore": [
+      "&#FFDC73• Opens a Vanilla Items Crate"
+    ]
+  },
+  "prize": [
+    {
+      "name": "&#63BC5DDiamond",
+      "material": "minecraft:diamond",
+      "amount": 1,
+	  "nbt": "{species:\"cobblemon:bulbasaur\",aspects:[\"shiny\"]}",
+      "commands": [
+        "give {player_name} minecraft:diamond 1"
+      ],
+      "broadcast": "&6{player_name} &fhas received {prize_name} &ffrom {crate_name}",
+      "messageToOpener": "&6[Pebble's Crates] &f&lYou got {prize_name} &f&lfrom Vanilla Items Crate",
+      "lore": [
+        "Chance of getting the drop: {chance}%"
+      ],
+      "chance": 40
+    },
+    {
+      "name": "&rElytra",
+      "material": "minecraft:elytra",
+      "amount": 1,
+      "commands": [
+        "give {player_name} minecraft:elytra 1"
+      ],
+      "broadcast": "&6{player_name} &fhas received {prize_name} &ffrom {crate_name}",
+      "messageToOpener": "&6[Pebble's Crates] &f&lYou got {prize_name} &f&lfrom Vanilla Items Crate",
+      "lore": [
+        "Chance of getting the drop: {chance}%"
+      ],
+      "chance": 5
+    },
+    {
+      "name": "&rGolden Apple",
+      "material": "minecraft:golden_apple",
+      "amount": 1,
+      "commands": [
+        "give {player_name} minecraft:golden_apple 1"
+      ],
+      "broadcast": "&6{player_name} &fhas received {prize_name} &ffrom {crate_name}",
+      "messageToOpener": "&6[Pebble's Crates] &f&lYou got {prize_name} &f&lfrom Vanilla Items Crate",
+      "lore": [
+        "Chance of getting the drop: {chance}%"
+      ],
+      "chance": 55
+    }
+  ]
+}
+```
+Note that the mod supports legacy formatting (e.g. &#63BC5D, &4, &f, &r) as demonstrated in the example.

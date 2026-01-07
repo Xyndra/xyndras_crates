@@ -1,0 +1,89 @@
+package de.xyndra.xyndras_crates.lootcrates
+
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import de.xyndra.xyndras_crates.util.ItemStackTypeAdapter
+import net.minecraft.world.item.ItemStack
+import java.io.File
+
+object CrateConfigManager {
+    private val gson: Gson = GsonBuilder().registerTypeAdapter(ItemStack::class.java, ItemStackTypeAdapter()).create()
+    private val configDirectory = File("config/xyndras-crate/crates")
+    private val crateConfigs = mutableMapOf<String, CrateConfig>()
+
+
+    fun createCratesFolder() {
+        if (!configDirectory.exists()) {
+            configDirectory.mkdirs()
+        }
+    }
+
+    init {
+        loadCrateConfigs()
+    }
+
+    fun getCrateConfig(crateName: String): CrateConfig? {
+        return crateConfigs[crateName]
+    }
+
+    fun saveCrateConfigs(updatedCrateConfigs: List<CrateConfig>) {
+        crateConfigs.clear()
+        updatedCrateConfigs.forEach { crateConfig ->
+            val crateName = crateConfig.crateName
+            crateConfigs[crateName] = crateConfig
+            val file = File(configDirectory, "$crateName.json")
+            file.writeText(gson.toJson(crateConfig))
+        }
+    }
+
+    fun setCrateConfig(crateName: String, crateConfig: CrateConfig) {
+        crateConfigs[crateName] = crateConfig
+        saveCrateConfigs(crateConfigs.values.toList())
+    }
+
+    fun loadCrateConfigs(): MutableList<CrateConfig> {
+        if (!configDirectory.exists()) {
+            configDirectory.mkdirs()
+        }
+
+        val loadedConfigs = mutableListOf<CrateConfig>()
+
+        crateConfigs.clear()
+
+        configDirectory.listFiles { _, name -> name.endsWith(".json") }?.forEach { file ->
+            val json = file.readText()
+            if (json.isNotEmpty()) {
+                val crateConfig = gson.fromJson(json, CrateConfig::class.java)
+                val crateName = crateConfig.crateName
+                crateConfigs[crateName] = crateConfig
+                loadedConfigs.add(crateConfig)
+            }
+        }
+
+        return loadedConfigs
+    }
+
+}
+
+data class CrateConfig(
+    val crateName: String,
+    val crateKey: CrateKey,
+    val screenName: String? = null,
+    var prize: List<Prize>,
+)
+
+data class CrateKey(
+    val material: String, val name: String, val nbt: String?, val lore: List<String>
+)
+
+data class Prize(
+    val name: String,
+    val material: String,
+    val amount: Int,
+    val nbt: String? = null,
+    val commands: List<String>,
+    val broadcast: String? = null,
+    val messageToOpener: String? = null,
+    val lore: List<String>?,
+    val chance: Int
+)

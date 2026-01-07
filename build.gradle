@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id 'net.neoforged.moddev' version '2.0.137'
     id 'idea'
+    id 'org.jetbrains.kotlin.jvm' version '2.2.20'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -19,6 +20,22 @@ group = mod_group_id
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        name = 'Kotlin for Forge'
+        url = 'https://thedarkcolour.github.io/KotlinForForge/'
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+    mavenCentral()
 }
 
 base {
@@ -133,6 +150,9 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    implementation 'thedarkcolour:kotlinforforge-neoforge:5.10.0'
+    implementation 'maven.modrinth:luckperms:rnvg05YO'
+    jarJar implementation('net.kyori:adventure-platform-neoforge:6.0.0')
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
