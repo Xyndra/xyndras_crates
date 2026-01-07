@@ -38,7 +38,7 @@ You may use the follow example as reference for the structure: <br>
         "give {player_name} minecraft:diamond 1"
       ],
       "broadcast": "&6{player_name} &fhas received {prize_name} &ffrom {crate_name}",
-      "messageToOpener": "&6[Pebble's Crates] &f&lYou got {prize_name} &f&lfrom Vanilla Items Crate",
+      "messageToOpener": "&6[Xyndra's Crates] &f&lYou got {prize_name} &f&lfrom Vanilla Items Crate",
       "lore": [
         "Chance of getting the drop: {chance}%"
       ],
@@ -52,7 +52,7 @@ You may use the follow example as reference for the structure: <br>
         "give {player_name} minecraft:elytra 1"
       ],
       "broadcast": "&6{player_name} &fhas received {prize_name} &ffrom {crate_name}",
-      "messageToOpener": "&6[Pebble's Crates] &f&lYou got {prize_name} &f&lfrom Vanilla Items Crate",
+      "messageToOpener": "&6[Xyndra's Crates] &f&lYou got {prize_name} &f&lfrom Vanilla Items Crate",
       "lore": [
         "Chance of getting the drop: {chance}%"
       ],
@@ -66,7 +66,7 @@ You may use the follow example as reference for the structure: <br>
         "give {player_name} minecraft:golden_apple 1"
       ],
       "broadcast": "&6{player_name} &fhas received {prize_name} &ffrom {crate_name}",
-      "messageToOpener": "&6[Pebble's Crates] &f&lYou got {prize_name} &f&lfrom Vanilla Items Crate",
+      "messageToOpener": "&6[Xyndra's Crates] &f&lYou got {prize_name} &f&lfrom Vanilla Items Crate",
       "lore": [
         "Chance of getting the drop: {chance}%"
       ],
