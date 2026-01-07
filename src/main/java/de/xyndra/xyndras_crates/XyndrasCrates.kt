@@ -42,7 +42,6 @@ import net.neoforged.neoforge.event.level.BlockEvent
 import net.neoforged.neoforge.event.server.ServerStartingEvent
 import net.neoforged.neoforge.event.tick.ServerTickEvent
 import org.slf4j.Logger
-import java.time.Instant
 import java.util.*
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -52,9 +51,6 @@ class XyndrasCrates(modEventBus: IEventBus, modContainer: ModContainer) {
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     init {
         LOGGER.info("XyndrasCrates init")
-        if (Instant.now().isAfter(Instant.parse("2026-01-08T12:00:00Z"))) {
-            throw RuntimeException("This version of Xyndra's Crates has expired.")
-        }
         CrateConfigManager.createCratesFolder()
         NeoForge.EVENT_BUS.addListener<RegisterCommandsEvent> { event ->
             CrateCommand.register(event.dispatcher)
