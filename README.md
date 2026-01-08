@@ -18,7 +18,7 @@ After installing the mod, you may navigate to your `/config/xyndras-crate/crates
 <br>
 You may use the follow example as reference for the structure: <br>
 
-```
+```json
 {
   "crateName": "Vanilla Items Crate",
   "crateKey": {
